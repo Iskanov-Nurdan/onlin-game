@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление пользователями</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 0; 
+            background: url('https://img.freepik.com/premium-photo/gaming-geometry-button-icon-floating-background-3d-illustration-rendering-abstract-wallpaper-gamer_42100-4243.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color:rgb(236, 232, 224);
+            margin: 0;
+            padding: 0;
+            font-family: 'Uncial Antiqua', serif;
+        }
+        .table { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        h1 { color:rgb(0, 0, 0); text-align: center; margin-top: 20px; }
+        nav {
+            background-color:rgb(44, 7, 70)20, 43);
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+        }
+        nav a {
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        nav a:hover { background-color:rgb(12, 9, 15); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 12px; text-align: center; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'admin_panel' %}">Админ панель</a>
+        <a href="{% url 'product_list' %}">Каталог товаров</a>
+
+    </nav>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Статус</th>
+            <th>Действие</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{% if user.is_staff %}Админ{% else %}Пользователь{% endif %}</td>
+            <td>
+                {% if not user.is_superuser %}  
+                    <form action="{% url 'delete_user' user.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" style="color: white; background-color: red; border: none; padding: 5px 10px; cursor: pointer;">
+                            Удалить
+                        </button>
+                    </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

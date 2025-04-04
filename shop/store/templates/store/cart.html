@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <style>
+        /* Общие стили страницы */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            font-family: 'Uncial Antiqua', serif;
+            background: url('https://img.freepik.com/free-vector/abstract-pixel-rain-background_23-2148383734.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color:rgb(243, 243, 243);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #6a0dad;
+            text-align: center;
+            margin-top: 20px;
+        }
+        /* Навигационная панель */
+        nav {
+            background-color: #6a0dad;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #8a2be2;
+        }
+        /* Стили списка товаров */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        /* Кнопки */
+        .button {
+            background-color: #6a0dad;
+            color: #fff;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #8a2be2;
+        }
+        /* Предупреждения */
+        .warning {
+            background-color: #ffcccb;
+            color: #a94442;
+            padding: 10px;
+            border: 1px solid #a94442;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <nav>
+        <a href="{% url 'product_list' %}">Главная</a>
+        <a href="{% url 'profile' %}">Профиль</a>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Выйти</a>
+        {% else %}
+            <a href="{% url 'login' %}">Вход</a>
+            <a href="{% url 'register' %}">Регистрация</a>
+        {% endif %}
+        {% if user.is_staff %}
+            <a href="{% url 'product_create' %}">Добавить товар</a>
+            <a href="/admin/">Админка</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        <h1>Корзина</h1>
+        {% if cart_items %}
+            <table>
+                <tr>
+                    <th>Название товара</th>
+                    <th>Количество</th>
+                    <th>Цена за шт.</th>
+                    <th>Общая сумма</th>
+                </tr>
+                {% for item in cart_items %}
+                <tr>
+                    <td>
+                        <a class="button" href="{% url 'product_detail' item.product.id %}">
+                            {{ item.product.name }}
+                        </a>
+                    </td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.product.price }} сом.</td>
+                    <td>{{ item.total_price }} сом.</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3"><strong>Итого</strong></td>
+                    <td><strong>{{ total_sum }} сом.</strong></td>
+                </tr>
+            </table>
+            <p style="text-align: center; margin-top: 20px;">
+                <a class="button" href="{% url 'checkout' %}">Оформить заказ</a>
+            </p>
+        {% else %}
+            <div class="warning">
+                Ваша корзина пуста. Добавьте товары для покупки.
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

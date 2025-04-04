@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+    <style>
+        /* Стили аналогичные другим страницам */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            font-family: 'Uncial Antiqua', serif;
+            background: url('https://img.freepik.com/free-vector/abstract-pixel-rain-background_23-2148383734.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color:rgb(243, 243, 243);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        nav {
+            background-color: #6a0dad;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #8a2be2;
+        }
+        .button {
+            background-color: #6a0dad;
+            color: #fff;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #8a2be2;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'product_list' %}">Главная</a>
+        <a href="{% url 'profile' %}">Профиль</a>
+        <a href="{% url 'cart' %}">Корзина</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Выйти</a>
+        {% else %}
+            <a href="{% url 'login' %}">Вход</a>
+            <a href="{% url 'register' %}">Регистрация</a>
+        {% endif %}
+        {% if user.is_staff %}
+            <a href="{% url 'product_create' %}">Добавить товар</a>
+            <a href="/admin/">Админка</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+        <p>Цена: {{ product.price }} сом.</p>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="300">
+        <p>На складе: {{ product.stock }}</p>
+        <p>
+            <a class="button" href="{% url 'add_to_cart' product.id %}">Добавить в корзину</a>
+        </p>
+        <p>
+            <a class="button" href="{% url 'product_list' %}">Назад к списку товаров</a>
+        </p>
+    </div>
+</body>
+</html>
