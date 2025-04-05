@@ -11,7 +11,7 @@
             padding: 0;
             background-color: #f8f8f8;
             font-family: 'Uncial Antiqua', serif;
-            background: url('https://static.euronews.com/articles/stories/07/96/28/58/1440x810_cmsv2_487f4b68-7671-558f-b973-f295a0f7eb18-7962858.jpg') no-repeat center center fixed;
+            background: url('https://economist.kg/content/images/size/w1200/2023/10/341016165-perevod_dollaprov_ssha_v_rossiyskie_rubli.jpg') no-repeat center center fixed;
             background-size: cover;
             color:rgb(243, 243, 243);
             margin: 0;
@@ -65,7 +65,7 @@
             <a href="{% url 'register' %}">Регистрация</a>
         {% endif %}
         {% if user.is_staff %}
-            <a href="{% url 'product_create' %}">Добавить товар</a>
+            <a href="{% url 'product_create' %}">Добавить перевод</a>
             <a href="/admin/">Админка</a>
         {% endif %}
     </nav>
@@ -79,7 +79,7 @@
             <a class="button" href="{% url 'add_to_cart' product.id %}">Добавить в корзину</a>
         </p>
         <p>
-            <a class="button" href="{% url 'product_list' %}">Назад к списку товаров</a>
+            <a class="button" href="{% url 'product_list' %}">Назад к списку переводов</a>
         </p>
     </div>
 </body>

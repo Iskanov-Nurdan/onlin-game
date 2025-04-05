@@ -11,7 +11,7 @@
             padding: 0;
             background-color: #f8f8f8;
             font-family: 'Uncial Antiqua', serif;
-            background: url('https://kartinki.pibig.info/uploads/posts/2023-04/thumbs/1680974100_kartinki-pibig-info-p-kartinki-dlya-prezentatsii-puteshestvie-ar-49.jpg') no-repeat center center fixed;
+            background: url('https://gdb.rferl.org/c4160000-0aff-0242-7090-08d9f83d983b_cx0_cy6_cw0_w1023_r1_s.jpg') no-repeat center center fixed;
             background-size: cover;
             color:rgb(243, 243, 243);
             margin: 0;
@@ -96,7 +96,7 @@
             <a href="{% url 'register' %}">Регистрация</a>
         {% endif %}
         {% if user.is_staff %}
-            <a href="{% url 'product_create' %}">Добавить товар</a>
+            <a href="{% url 'product_create' %}">Добавить имя</a>
             <a href="/admin/">Админка</a>
         {% endif %}
     </nav>
@@ -106,9 +106,8 @@
         {% if cart_items %}
             <table>
                 <tr>
-                    <th>Название товара</th>
-                    <th>Количество</th>
-                    <th>Цена за шт.</th>
+                    <th>имя</th>
+                    <th>сумма</th>
                     <th>Общая сумма</th>
                 </tr>
                 {% for item in cart_items %}
@@ -129,11 +128,11 @@
                 </tr>
             </table>
             <p style="text-align: center; margin-top: 20px;">
-                <a class="button" href="{% url 'checkout' %}">Оформить заказ</a>
+                <a class="button" href="{% url 'checkout' %}">Оформить переводы</a>
             </p>
         {% else %}
             <div class="warning">
-                Ваша корзина пуста. Добавьте товары для покупки.
+                Ваша корзина пуста.
             </div>
         {% endif %}
     </div>

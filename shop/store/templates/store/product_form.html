@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if form.instance.pk %}Редактирование товара{% else %}Добавление товара{% endif %}</title>
+    <title>{% if form.instance.pk %}Редактирование перевода{% else %}Добавление перевода{% endif %}</title>
     <style>
         :root {
             --primary:rgb(6, 6, 7);
@@ -23,7 +23,7 @@
             color: var(--text);
             line-height: 1.6;
             font-family: 'Uncial Antiqua', serif;
-            background: url('https://cloud.paysend.com/strapi/prod/How_to_send_money_to_Kyrgyzstan_1200_4934f59177.jpg') no-repeat center center fixed;
+            background: url('https://astrasend.ru/local/templates/default/images/main/img_1.jpg') no-repeat center center fixed;
             background-size: cover;
             color:rgb(0, 0, 0);
             margin: 0;
@@ -166,7 +166,7 @@
     
     <div class="container">
         <div class="form-card">
-            <h1>{% if form.instance.pk %}Редактирование товара{% else %}Добавление нового товара{% endif %}</h1>
+            <h1>{% if form.instance.pk %}Редактирование перевода{% else %}Добавление нового товара{% endif %}</h1>
             
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
