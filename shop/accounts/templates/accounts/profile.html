@@ -6,12 +6,12 @@
     <title>Профиль пользователя</title>
     <style>
         :root {
-                --primary:rgb(179, 56, 56);
+                --primary:rgb(15, 112, 192);
                 --primary-light:rgb(23, 20, 26);
-                --background:rgb(197, 37, 25);
-                --card:rgb(219, 87, 11);
+                --background:rgb(10, 63, 107);
+                --card:rgb(220, 220, 230);
                 --text: #333;
-                --border:rgb(188, 187, 192);
+                --border:rgb(212, 212, 212);
                 --success:rgb(25, 53, 211);
         }
         
@@ -23,7 +23,7 @@
             color: var(--text);
             line-height: 1.6;
             font-family: 'Uncial Antiqua', serif;
-            background: url('https://cdn.freelance.ru/download/2566118/file.jpg') no-repeat center center fixed;
+            background: url('https://zhazhda.biz/wp-content/uploads/2017/04/turagenstvo-02.png') no-repeat center center fixed;
             background-size: cover;
             color:rgb(255, 255, 255);
             margin: 0;
@@ -231,11 +231,11 @@
                 <h1>Добро пожаловать, {{ user.username }}!</h1>
                 <p class="user-email">Email: {{ user.email }}</p>
                 <a href="{% url 'edit_profile' %}" class="btn">Редактировать профиль</a>
-                <a href="{% url 'product_list' %}" class="btn btn-outline">Продолжить покупок игр</a>
+                <a href="{% url 'product_list' %}" class="btn btn-outline">Продолжить покупок билетов</a>
             </div>
         </div>
         
-        <h2 class="section-title">История игры</h2>
+        <h2 class="section-title">История мест</h2>
         
         <div class="orders-list">
             {% if orders %}
@@ -248,8 +248,8 @@
                 {% endfor %}
             {% else %}
                 <div class="no-orders">
-                    <p>Вы еще не совершали покупок</p>
-                    <a href="{% url 'product_list' %}" class="btn" style="margin-top: 15px;">Перейти к играм</a>
+                    <p>Вы еще не совершали покупок билетов</p>
+                    <a href="{% url 'product_list' %}" class="btn" style="margin-top: 15px;">Перейти к местам</a>
                 </div>
             {% endif %}
         </div>
